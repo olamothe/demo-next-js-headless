@@ -6,7 +6,6 @@ This is a vanilla project using next.js and @coveo/headless. It is not using any
 
 The goal of is repository is mainly for educational purposes: It only try to and showcase how navigation can work in the simplest possible manner, and only keep the strict necessary to show how it can be achieved.
 
-
 This repository tries to showcase an implementation of the concepts that are explained in this page: https://docs.coveo.com/en/headless/latest/usage/synchronize-search-parameters-with-the-url/
 
 ## Set the initial search parameters to the values in the URL when a page first load
@@ -23,7 +22,7 @@ if (windowExists() && isSearchPage(router.pathname)) {
 }
 ```
 
-We first verify that we are client side, and not server side, and that the window object exsits.
+We first verify that we are client side, and not server side, and that the window object exist.
 
 After this, we only want to sync parameters when we are on the search page.
 Obviously, if the initial synchronization was needed on more than one page, then the logic could be adapted.
@@ -34,7 +33,7 @@ When executing `urlManager.synchronize(window.location.hash.slice(1))`, the `url
 
 Since in this example app and we are only interested in synchronizing search parameters on the search page, all the logic reside in `./pages/search.tsx`.
 
-This could obviously be adapted if more synchronization was needed on multiple page.
+This could also be adapted if more synchronization was needed on multiple page.
 
 ```typescript
 export const SearchPage: React.FC = () => {
