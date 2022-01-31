@@ -97,7 +97,7 @@ const submit = () => {
 This `submit()` function has some minimal logic that needs to be handled when the end user is not currently on the search page.
 When that happens, we need to `synchronize` the url manager with the `q` value, wiping out any other previous parameters.
 
-This is done so that any state, if any, that were present on the search page are not kept.
+This is done so that any state that were present on the search page is not kept.
 
 For example, we would want any facet selection to be removed.
 
