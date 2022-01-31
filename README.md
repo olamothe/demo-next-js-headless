@@ -32,7 +32,7 @@ if (windowExists() && isSearchPage(router.pathname)) {
 We first verify that we are client side, and not server side, and that the window object exist.
 
 After this, we only want to sync parameters when we are on the search page.
-Obviously, if the initial synchronization was needed on more than one page, then the logic could be adapted.
+Obviously, if the initial synchronization is needed on more than one page, then the logic could be adapted.
 
 When executing `urlManager.synchronize(window.location.hash.slice(1))`, the `urlManager` will simply try to parse the current `hash`, and apply any initial state it can detect there.
 
@@ -67,6 +67,10 @@ export const SearchPage: React.FC = () => {
   };
 
   useEffect(subscribeToStateChangesAndReturnCleanup, []);
+
+  // code omitted for brevity
+    // [ ... ]
+}
 ```
 
 This piece of code utilize `useEffect` with an empty dependency list `[]` so that it only execute once.
