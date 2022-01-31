@@ -136,6 +136,40 @@ That is, if the end user is on the search page, uses the search box and enter "m
 
 Product listing page only contains the necessary logic to use the next router to get the current product category. This demo repository is linked to a random internal demo on the development Coveo platform. It does not need to contain any logic related to search parameter.
 
+## urlManager is entirely optional
+
+With all of this being said, it is important to remember that the URL manager is entirely optional. It's only purpose is to help simplify what could otherwise be a lot of boilerplate code.
+
+Nothing stops an implementer to come up with their own URL management, mechanism or system that they think would best represent the state of the search page.
+
+For example, it would be possible to use query string parameters or path parameters, and never use or import `urlManager` at all.
+
+The above logic would remain the same, with the caveat that the URL parsing as well as applying the initial state correctly would have to be done entirely by the implementer. This is essentially what `urlManager.synchronize()` perform internally.
+
+To give a concrete example, let's say the agreed upon URL scheme is `/search?the_query_is=foo&the_facet_for_brand_selected_values=a,b,c&the_current_page=3`
+
+Where:
+
+- `the_query_is` represent the search box, or query text, that should be applied on load.
+- `the_facet_for_brand_selected_values` represent the array of selected values to the facet with field `ec_brand`
+- `the_current_page` represent the current pagination.
+
+The above logic would have to be changed so that instead of using the `urlManager` in `_app.tsx` to perform the initial synchronization, you would have to create a module to parse the URL.
+
+After parsing, for each parameter that needs to be applied, use the corresponding `@coveo/headless` action to dispatch and apply that initial state before the query is executed.
+
+Again, using the above example, these function would need to be executed:
+
+- `engine.dispatch(updateQueryText('foo'))`
+- `engine.dispatch(toggleSelectFacetValue(a))`, `engine.dispatch(toggleSelectFacetValue(b))`, `engine.dispatch(toggleSelectFacetValue(c))`
+- `engine.dispatch(updatePage(3))`
+
+This logic would need to be manually coded and repeated for each search page parameter that the implementer wants to support.
+
+We would also need to subscribe to any state change of each invididual controller present in the search page for which we want to persist their state in the URL, and use `router.push({query})` to ensure they are persisted.
+
+This is essentially what the `urlManager.subscribe()` function in `SearchPage.tsx` perform internally.
+
 ## Important
 
 One important thing to make sure the navigation stays consistent is to ensure that URL entry should be treated as an operation that happens only once in the lifecycle of a page or a query.
