@@ -30,7 +30,7 @@ export const SearchboxHeader: React.FC<{
       <input
         value={searchBoxState.value}
         placeholder="Search"
-        onSubmit={searchBox.submit}
+        onSubmit={submit}
         type="search"
         onKeyDown={(e) => (e.code === "Enter" ? submit() : null)}
         onChange={(e) => searchBox.updateText(e.target.value)}
