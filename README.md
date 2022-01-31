@@ -8,6 +8,13 @@ The goal of is repository is mainly for educational purposes: It only try to and
 
 This repository tries to showcase an implementation of the concepts that are explained in this page: https://docs.coveo.com/en/headless/latest/usage/synchronize-search-parameters-with-the-url/
 
+## Running this demo
+
+```
+npm i
+npm run dev
+```
+
 ## Set the initial search parameters to the values in the URL when a page first load
 
 First, all headless controllers and engine are initialized and created, and then exported as a single module in `./headless/index.ts`. This also means the `urlManager` is instantiated there.
