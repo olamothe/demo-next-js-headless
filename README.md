@@ -6,11 +6,10 @@ This is a vanilla project using next.js and @coveo/headless. It is not using any
 
 The goal of is repository is mainly for educational purposes: It only try to and showcase how navigation can work in the simplest possible manner, and only keep the strict necessary to show how it can be achieved.
 
-## Important information
 
 This repository tries to showcase an implementation of the concepts that are explained in this page: https://docs.coveo.com/en/headless/latest/usage/synchronize-search-parameters-with-the-url/
 
-## Set the initial search parameters to the values in the URL when a page first loads.
+## Set the initial search parameters to the values in the URL when a page first load
 
 First, all headless controllers and engine are initialized and created, and then exported as a single module in `./headless/index.ts`. This also means the `urlManager` is instantiated there.
 
@@ -31,7 +30,7 @@ Obviously, if the initial synchronization was needed on more than one page, then
 
 When executing `urlManager.synchronize(window.location.hash.slice(1))`, the `urlManager` will simply try to parse the current `hash`, and apply any initial state it can detect there.
 
-## Update the hash when search parameters change.
+## Update the hash when search parameters changes
 
 Since in this example app and we are only interested in synchronizing search parameters on the search page, all the logic reside in `./pages/search.tsx`.
 
